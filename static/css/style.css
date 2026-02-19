@@ -1,0 +1,548 @@
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4f0f7;
+    color: #333;
+}
+
+/* ===== TOPO ===== */
+.topo {
+    background: linear-gradient(135deg, #5e2b97, #3a0f5f);
+    color: white;
+    padding: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.topo h1 {
+    font-size: 18px;
+}
+
+.total-topo {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* ===== CATEGORIAS ===== */
+.categorias {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 15px;
+}
+
+.categorias button {
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    background: #e0d3f0;
+    color: #5e2b97;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.categorias button.ativa {
+    background: #5e2b97;
+    color: white;
+}
+
+.categorias button:hover {
+    transform: scale(1.05);
+}
+
+/* ===== PRODUTOS ===== */
+.produtos {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 15px;
+    padding: 15px;
+}
+
+.produto-card {
+    background: white;
+    border: none;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: 0.3s;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.produto-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.produto-nome {
+    font-weight: 600;
+}
+
+.produto-preco {
+    color: #5e2b97;
+    font-weight: bold;
+}
+
+/* ===== ITENS DA COMANDA ===== */
+.itens {
+    padding: 15px;
+}
+
+.itens h2 {
+    margin-bottom: 10px;
+}
+
+.item-comanda {
+    background: white;
+    border-radius: 12px;
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.06);
+}
+
+.item-nome {
+    font-weight: 500;
+}
+
+.item-preco {
+    color: #5e2b97;
+    font-weight: bold;
+}
+
+.btn-remover {
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-remover:hover {
+    transform: scale(1.2);
+}
+
+/* ===== TOTAL E FECHAR ===== */
+.fechar-box {
+    position: sticky;
+    bottom: 0;
+    background: white;
+    padding: 15px;
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.1);
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.total-final {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.fechar-box select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.fechar {
+    width: 100%;
+    padding: 12px;
+    background: #5e2b97;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.fechar:hover {
+    background: #3a0f5f;
+}
+
+.container {
+    padding: 20px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 18px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    margin-bottom: 20px;
+}
+
+.form-grid {
+    display: grid;
+    gap: 10px;
+}
+
+.form-grid input,
+.form-grid select {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+}
+
+.btn-primary {
+    display: inline-block;
+    padding: 12px;
+    background: #5e2b97;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background: #3a0f5f;
+}
+
+.atalhos {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.btn-large {
+    flex: 1;
+    padding: 18px;
+    background: #5e2b97;
+    color: white;
+    text-align: center;
+    border-radius: 15px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-large:hover {
+    background: #3a0f5f;
+}
+
+.produtos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.excluir {
+    background: transparent;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+}
+/* ===== LOGIN ===== */
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.auth-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #5e2b97, #3a0f5f);
+}
+
+.auth-container form {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 320px;
+}
+
+.auth-container h2 {
+    color: white;
+    margin-bottom: 20px;
+    text-align: center;
+    padding: 20px;
+}
+
+.auth-container input {
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+.auth-container button {
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background: #5e2b97;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.auth-container button:hover {
+    background: #3a0f5f;
+}
+
+/* ===== NOVA COMANDA ===== */
+
+.nova-comanda-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #5e2b97, #3a0f5f);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.nova-comanda-card {
+    background: white;
+    width: 100%;
+    max-width: 420px;
+    padding: 35px;
+    border-radius: 25px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.nova-comanda-card h1 {
+    text-align: center;
+    color: #5e2b97;
+    font-size: 22px;
+}
+
+.nova-comanda-card input {
+    padding: 14px;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.nova-comanda-card input:focus {
+    outline: none;
+    border: 1px solid #5e2b97;
+    box-shadow: 0 0 8px rgba(94,43,151,0.3);
+}
+
+.btn-criar-comanda {
+    padding: 14px;
+    border-radius: 14px;
+    border: none;
+    background: #5e2b97;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-criar-comanda:hover {
+    background: #3a0f5f;
+    transform: translateY(-2px);
+}
+
+.voltar-link {
+    text-align: center;
+    text-decoration: none;
+    color: #5e2b97;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.voltar-link:hover {
+    color: #3a0f5f;
+}
+
+/* ============================= */
+/* ===== NOVA VENDA (PDV) ===== */
+/* ============================= */
+
+.venda-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.venda-titulo {
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: #5e2b97;
+}
+
+.venda-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.venda-grid button {
+    background: white;
+    border: none;
+    padding: 18px;
+    border-radius: 18px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: 0.25s;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+.venda-grid button:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    background: #f3e9ff;
+}
+
+.venda-total-box {
+    background: linear-gradient(135deg, #5e2b97, #3a0f5f);
+    color: white;
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.venda-botoes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 15px;
+}
+
+.venda-botoes button {
+    padding: 15px;
+    border: none;
+    border-radius: 14px;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    color: white;
+}
+
+.venda-botoes button:nth-child(1) {
+    background: #6a0dad;
+}
+
+.venda-botoes button:nth-child(2) {
+    background: #5e2b97;
+}
+
+.venda-botoes button:nth-child(3) {
+    background: #3a0f5f;
+}
+
+.venda-botoes button:hover {
+    transform: scale(1.05);
+}
+/* ============================= */
+/* ===== LISTA DE COMANDAS ===== */
+/* ============================= */
+
+.comandas-container {
+    padding: 25px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.comandas-titulo {
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: #5e2b97;
+}
+
+.comandas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 20px;
+}
+
+.comanda-card {
+    background: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    transition: 0.3s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.comanda-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.comanda-numero {
+    font-size: 14px;
+    color: #999;
+}
+
+.comanda-cliente {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.comanda-total {
+    font-size: 16px;
+    font-weight: bold;
+    color: #5e2b97;
+}
+
+.comanda-status {
+    font-size: 13px;
+    font-weight: 600;
+    padding: 6px 10px;
+    border-radius: 20px;
+    display: inline-block;
+    width: fit-content;
+}
+
+.status-aberta {
+    background: #e9dcff;
+    color: #5e2b97;
+}
+
+.status-fechada {
+    background: #ddd;
+    color: #555;
+}
+
+.comanda-link {
+    text-decoration: none;
+}
+

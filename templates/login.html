@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sistema Açaí</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="auth-container">
+        <h2>🍧 Sistema Açaí</h2>
+
+        <form method="post">
+            <input type="text" name="username" placeholder="Usuário" required>
+
+            <input type="password" name="senha" placeholder="Senha" required>
+
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Abrir Comanda - Sistema Açaí</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body class="nova-comanda-container">
+
+  <div class="nova-comanda-card">
+    <h1>Abrir Comanda 🧾</h1>
+
+    <form method="post">
+      <input 
+        type="text"
+        name="cliente"
+        placeholder="Nome ou número do cliente"
+        required
+      >
+
+      <button type="submit" class="btn-criar-comanda">
+        Abrir Comanda
+      </button>
+    </form>
+
+    <a href="/" class="voltar-link">← Voltar</a>
+  </div>
+
+</body>
+
+</html>

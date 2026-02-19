@@ -1,0 +1,7 @@
+venv/
+__pycache__/
+*.pyc
+database.db
+.env
+migracao_comandas.sqlite
+gerar_banco.py

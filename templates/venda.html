@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Nova Venda</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<div class="venda-container">
+
+  <h1 class="venda-titulo">Nova Venda 💰</h1>
+
+  <div class="venda-grid">
+    {% for p in produtos %}
+      <button type="button"
+              onclick='adicionar({{ p.id }}, {{ p.nome|tojson }}, {{ p.preco }})'>
+        {{ p.nome }} <br>
+        R$ {{ "%.2f"|format(p.preco) }}
+      </button>
+    {% endfor %}
+  </div>
+
+  <div class="venda-total-box">
+    Total: R$ <span id="total">0.00</span>
+  </div>
+
+  <div class="venda-botoes">
+    <button type="button" onclick="finalizar('Pix')">Pix</button>
+    <button type="button" onclick="finalizar('Cartão')">Cartão</button>
+    <button type="button" onclick="finalizar('Dinheiro')">Dinheiro</button>
+  </div>
+
+</div>
+
+<script>
+let total = 0
+let itens = []
+
+function adicionar(id, nome, preco) {
+  itens.push({ id: id, preco: preco })
+  total += preco
+  document.getElementById("total").innerText = total.toFixed(2)
+}
+
+function finalizar(pagamento) {
+  if (itens.length === 0) {
+    alert("Nenhum item na venda")
+    return
+  }
+
+  fetch("/venda/salvar", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      total: total,
+      pagamento: pagamento,
+      itens: itens
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    alert("Venda registrada com sucesso!")
+    total = 0
+    itens = []
+    document.getElementById("total").innerText = "0.00"
+  })
+}
+</script>
+
+</body>
+</html>

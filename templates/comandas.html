@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Comandas Abertas</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+
+</head>
+<body>
+
+<div class="comandas-container">
+
+  <h1 class="comandas-titulo">Comandas Abertas 📋</h1>
+
+  <div class="comandas-grid">
+    {% for c in comandas %}
+      <a href="/comanda/{{ c.id }}" class="comanda-link">
+        <div class="comanda-card">
+          
+          <div class="comanda-numero">
+            Comanda #{{ c.id }}
+          </div>
+
+          <div class="comanda-cliente">
+            {{ c.cliente }}
+          </div>
+
+          <div class="comanda-total">
+            R$ {{ "%.2f"|format(c.total) }}
+          </div>
+
+          <div class="comanda-status status-aberta">
+            {{ c.status }}
+          </div>
+
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+
+</div>
+
+</body>
+
+</html>

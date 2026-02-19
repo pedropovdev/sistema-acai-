@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Comanda #{{ comanda.id }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+<header class="topo">
+    <div>
+        <h1>Comanda #{{ comanda.id }}</h1>
+        <span>{{ comanda.cliente }}</span>
+    </div>
+    <div class="total-topo">
+        Total: R$ {{ "%.2f"|format(comanda.total) }}
+    </div>
+</header>
+
+
+<nav class="categorias">
+    <button onclick="mostrar('acai', this)" class="ativa">Açaí</button>
+    <button onclick="mostrar('adicional', this)">Adicionais</button>
+    <button onclick="mostrar('cerveja', this)">Cervejas</button>
+    <button onclick="mostrar('refrigerante', this)">Refri</button>
+    <button onclick="mostrar('salgado', this)">Salgados</button>
+</nav>
+
+
+<section class="produtos-wrapper">
+{% for categoria in ['acai','adicional','cerveja','refrigerante','salgado'] %}
+    <div class="produtos categoria" id="{{ categoria }}"
+         {% if categoria != 'acai' %}style="display:none;"{% endif %}>
+
+        {% for p in produtos %}
+            {% if p.categoria == categoria %}
+                <form method="post" action="/comanda/{{ comanda.id }}/adicionar">
+                    <input type="hidden" name="produto_id" value="{{ p.id }}">
+                    <input type="hidden" name="preco" value="{{ p.preco }}">
+
+                    <button class="produto-card" type="submit">
+                        <span class="produto-nome">{{ p.nome }}</span>
+                        <span class="produto-preco">
+                            R$ {{ "%.2f"|format(p.preco) }}
+                        </span>
+                    </button>
+                </form>
+            {% endif %}
+        {% endfor %}
+
+    </div>
+{% endfor %}
+</section>
+
+
+<section class="itens">
+    <h2>Itens da Comanda</h2>
+
+    {% if itens %}
+        {% for item in itens %}
+            <div class="item-comanda">
+                <div class="info-item">
+                    <span class="item-nome">{{ item.nome }}</span>
+                    <span class="item-preco">
+                        R$ {{ "%.2f"|format(item.subtotal) }}
+                    </span>
+                </div>
+
+                <form method="post"
+                      action="/comanda/{{ comanda.id }}/remover/{{ item.id }}">
+                    <button class="btn-remover" type="submit">❌</button>
+                </form>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="vazio">Nenhum item adicionado</p>
+    {% endif %}
+</section>
+
+
+<footer class="fechar-box">
+    <div class="total-final">
+        Total: R$ {{ "%.2f"|format(comanda.total) }}
+    </div>
+
+    <form method="post" action="/comanda/{{ comanda.id }}/fechar">
+        <select name="pagamento" required>
+            <option value="" disabled selected>Forma de pagamento</option>
+            <option value="Pix">Pix</option>
+            <option value="Cartão">Cartão</option>
+            <option value="Dinheiro">Dinheiro</option>
+        </select>
+
+        <button class="fechar">Fechar Comanda</button>
+    </form>
+</footer>
+
+
+<script>
+function mostrar(cat, botao) {
+    document.querySelectorAll('.categoria').forEach(div => {
+        div.style.display = 'none'
+    })
+
+    document.getElementById(cat).style.display = 'grid'
+
+    document.querySelectorAll('.categorias button').forEach(b => {
+        b.classList.remove('ativa')
+    })
+
+    botao.classList.add('ativa')
+}
+</script>
+
+</body>
+</html>
